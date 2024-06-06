@@ -7,6 +7,27 @@ pencere.resizable(False,False)
 
 depo = ""
 
+def hesapla(tus):
+    global depo
+    if tus in "0123456789":
+        ekran.insert(END,tus)
+        depo = depo + tus
+    
+    if tus in "+-/*":
+        ekran.insert(END,tus)
+        depo = depo + tus
+
+    if tus == "=":
+        ekran.delete(0,END)
+        hesap = eval(depo, {"__builtins__":None},{})
+        depo = str(hesap)
+        ekran.insert(END,depo)
+
+    if tus == "C":
+        ekran.delete(0,END)
+        depo = ""
+
+
 ekran = Entry(width=40, justify=RIGHT)
 ekran.grid(row=0,column=0,columnspan=3,ipady=4)
 
